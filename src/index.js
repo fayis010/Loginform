@@ -1,13 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Form, Register } from './Form';
+import { Navigation } from './Navbar';
+import { Login } from './Login';
+import Theme from './Theme';
+import { ThemeProvider } from './ThemeProvider';
+import { Student } from './Student';
+import { Teacher } from './Teacher';
+import { Admin } from './Admin';
+import { Provider } from 'react-redux';
+import { store } from './Store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    <ThemeProvider>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Navigation/>}>
+      <Route path='/form' element={<Register/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/theme' element={<Theme/>}/>
+      <Route path='/student' element={<Student/>}/>
+      <Route path='/teacher' element={<Teacher/>}/>
+      <Route path='/admin' element={<Admin/>}/>
+      </Route>
+    </Routes>
+    </BrowserRouter>
+    </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 
